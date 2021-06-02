@@ -2,6 +2,7 @@ package pozoriste.show;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ public class Show implements Serializable {
 	private Long id;
 	private String description;
 	private String name;
-	private LocalDateTime date;
+	private Date date;
 	private boolean sold;
 	private float price;
 	private Map<Integer, Boolean> seats; // map for occupied seats
@@ -50,11 +51,11 @@ public class Show implements Serializable {
 		this.description = description;
 	}
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

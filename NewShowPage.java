@@ -11,12 +11,15 @@ import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
+
+import pozoriste.MainWindow;
 
 public class NewShowPage extends JPanel {
 
@@ -74,7 +77,7 @@ public class NewShowPage extends JPanel {
 		JSpinner dateField = new JSpinner(new SpinnerDateModel());
 		JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(dateField, "yyyy-MM-dd HH:mm");
 		dateField.setEditor(timeEditor);
-		dateField.setValue(new Date()); 
+		dateField.setValue(new Date());
 		dateField.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		timeEditor.getComponent(0).setBackground(backgroundColor);
 		fields.add(dateField);
@@ -86,6 +89,44 @@ public class NewShowPage extends JPanel {
 
 		addBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				String title = nameField.getText();
+				if (title.trim().equals("")) {
+					JOptionPane.showMessageDialog(null, "Naziv nije unet");
+					return;
+				}
+
+				String description = descriptionField.getText();
+				if (description.trim().equals("")) {
+					JOptionPane.showMessageDialog(null, "Opis nije unet");
+					return;
+
+				}
+
+				String price = priceField.getText();
+				if (price.trim().equals("")) {
+					JOptionPane.showMessageDialog(null, "Cena nije uneta");
+					return;
+				}
+				try {
+					Float.parseFloat(price);
+				} catch (Exception exc) {
+					JOptionPane.showMessageDialog(null, "Cena nije u ispravnom formatu");
+					return;
+				}
+
+				Date date = ((Date) dateField.getValue());
+				if (date.before(new Date())) {
+					JOptionPane.showMessageDialog(null, "Datum je u proslosti");
+					return;
+				}
+
+				Show s = new Show();
+				s.setDate(date);
+				s.setDescription(description);
+				s.setPrice(Float.parseFloat(price));
+				s.setName(title);
+				ShowFunctions.addShow(s);
 
 			}
 		});
