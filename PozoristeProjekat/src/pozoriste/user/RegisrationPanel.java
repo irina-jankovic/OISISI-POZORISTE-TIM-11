@@ -93,7 +93,51 @@ public class RegisrationPanel extends JPanel {
 
 		registerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+                         
+				String username = usernameField.getText();
+				if (username.trim().equals("")) {
+					JOptionPane.showMessageDialog(null, "Korisnicko ime nije uneto");
+					return;
+				}
 
+				String firstname = firstNameField.getText();
+				if (firstname.trim().equals("")) {
+					JOptionPane.showMessageDialog(null, "Ime nije uneto");
+					return;
+
+				}
+
+				String lastname = lastNameField.getText();
+				if (lastname.trim().equals("")) {
+					JOptionPane.showMessageDialog(null, "Prezime nije uneto");
+					return;
+
+				}
+
+				String password1 = passwordField.getText();
+				if (password1.equals("")) {
+					JOptionPane.showMessageDialog(null, "Lozinka nije uneta");
+					return;
+
+				}
+
+				String password2 = passwordField2.getText();
+				if (!password1.equals(password2)) {
+					JOptionPane.showMessageDialog(null, "Lozinke se ne poklapaju");
+					return;
+
+				}
+				User u= new User();
+				u.setFirstName(firstname);
+				u.setLastName(lastname);
+				u.setPassword(password1);
+				u.setUsername(username);
+				if(UserFunctions.register(u)) {
+					//TODO prosledjuje na login
+				}else {
+					JOptionPane.showMessageDialog(null, "Korisnicko ime je zauzeto");
+
+				}
 			}
 		});
 	}
