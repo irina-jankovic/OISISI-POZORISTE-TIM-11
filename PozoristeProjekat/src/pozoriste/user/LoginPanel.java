@@ -63,7 +63,12 @@ public class LoginPanel extends JPanel {
 
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				                
+		            if(UserFunctions.login(usernameField.getText(), passwordField.getText())) {
+				  //TODO prikazati login stranicu
+		            }else {
+	         	         JOptionPane.showMessageDialog(null, "Pogresni podaci");
+				}
 			}
 		});
 	}
