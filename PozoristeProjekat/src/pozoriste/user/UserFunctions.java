@@ -8,7 +8,7 @@ public class UserFunctions {
 	private static List<User> users; // all users
 	private static User currentUser; // logged in
 
-	public boolean login(String username, String password) {
+	public static boolean login(String username, String password) {
 		initUsers();
 		for (User user : users)
 			if (user.getUsername().equals(username) && password.equals(user.getPassword())) {
@@ -18,12 +18,12 @@ public class UserFunctions {
 		return false;
 	}
 
-	public void logout(String username, String password) {
+	public static void logout(String username, String password) {
 		currentUser = null;
 	}
 
 	//da ne mogu biti dva ista useraname-a
-	public boolean register(User u) {
+	public static boolean register(User u) {
 		initUsers();
 		for (User user : users)
 			if (user.getUsername().equals(u)) {
@@ -34,7 +34,7 @@ public class UserFunctions {
 		return true;
 	}
 
-	private void initUsers() {
+	private static void initUsers() {
 		if (users == null) {
 			// TODO load from file
 			users = new LinkedList<User>();
