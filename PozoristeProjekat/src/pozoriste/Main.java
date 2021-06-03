@@ -20,4 +20,21 @@ public class Main {
 		}
 	}
 
+	public static Object openFromFile(String file) {
+		try {
+			FileInputStream fi = new FileInputStream(new File(file));
+			ObjectInputStream oi = new ObjectInputStream(fi);
+			Object obj = oi.readObject();
+			oi.close();
+			fi.close();
+			return obj;
+
+		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
+		} catch (ClassNotFoundException e) {
+		}
+		return null;
+
+	}
+
 }

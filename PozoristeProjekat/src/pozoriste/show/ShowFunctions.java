@@ -1,5 +1,7 @@
 package pozoriste.show;
 
+import pozoriste.Main;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,8 +10,9 @@ public class ShowFunctions {
 
 	private static void initShows() {
 		if (shows == null) {
-			// TODO load from file
-			shows = new LinkedList<Show>();
+			shows = (List<Show>) Main.openFromFile("shows.data");
+			if (shows == null)
+				shows = new LinkedList<Show>();
 		}
 	}
 
@@ -17,12 +20,16 @@ public class ShowFunctions {
 		initShows();
 		s.setId((long) shows.size());
 		shows.add(s);
-		// TODO Save to file
+		Main.saveToFile(shows, "shows.data");
 	}
 
 	public static List<Show> getShows() {
 		initShows();
 		return shows;
+	}
+
+	public static void update(Show s) {
+		Main.saveToFile(shows, "shows.data");
 	}
 
 }
