@@ -25,14 +25,17 @@ public class Seat extends JPanel {
 		this.row = row;
 		add(new JLabel("R: " + row + " K:" + column));
 		JCheckBox jcb = new JCheckBox();
-		setBackground(new Color(120, 120, 120));
+		setBackground(new Color(50, 240, 50));
 
 		add(jcb);
-		if (notFree || UserFunctions.getCurrentUser().getType().equals("admin")) {
-			jcb.setEnabled(false);
+		if (notFree)
 			setBackground(Color.RED);
 
+		if (notFree || UserFunctions.getCurrentUser().getType().equals("admin")) {
+			jcb.setEnabled(false);
 		}
+
+
 
 		jcb.addActionListener(new ActionListener() {
 			@Override
@@ -49,6 +52,7 @@ public class Seat extends JPanel {
 	public int getRow() {
 		return row-1;
 	}
+
 	public int getColumn() {
 		return col-1;
 	}
