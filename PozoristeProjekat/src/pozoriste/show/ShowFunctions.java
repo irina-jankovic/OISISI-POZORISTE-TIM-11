@@ -6,6 +6,9 @@ import java.util.List;
 public class ShowFunctions {
 	private static List<Show> shows;
 
+	public ShowFunctions() {
+	}
+
 	private static void initShows() {
 		if (shows == null) {
 			// TODO load from file
@@ -23,6 +26,9 @@ public class ShowFunctions {
 	public static List<Show> getShows() {
 		initShows();
 		return shows;
+	}
+
+	public static void update(Show s) {
 	}
 
 }
