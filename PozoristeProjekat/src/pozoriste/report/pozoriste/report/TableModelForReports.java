@@ -11,9 +11,9 @@ public class TableModelForReports extends AbstractTableModel {
 
 	private List<String> columns = new ArrayList<String>();
 
-	private Report report;
+	private pozoriste.report.Report report;
 
-	public TableModelForReports(Report r) {
+	public TableModelForReports(pozoriste.report.Report r) {
 		columns.add("ID");
 		report = r;
 		columns.add("Cena");
