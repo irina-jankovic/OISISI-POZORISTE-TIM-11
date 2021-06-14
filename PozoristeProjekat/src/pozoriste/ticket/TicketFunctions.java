@@ -1,5 +1,8 @@
 package pozoriste.ticket;
 
+import pozoriste.Main;
+import pozoriste.show.ShowFunctions;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,7 +11,8 @@ public class TicketFunctions {
 
 	private static void initShows() {
 		if (tickets == null) {
-			// TODO load from file
+			tickets = (List<Ticket>) Main.openFromFile("tickets.data");
+			if (tickets == null)
 			tickets = new LinkedList<Ticket>();
 		}
 	}
@@ -17,7 +21,8 @@ public class TicketFunctions {
 		initShows();
 		t.setId((long) tickets.size());
 		tickets.add(t);
-		// TODO Save to file
+		ShowFunctions.update(null);
+		Main.saveToFile(tickets, "tickets.data");
 	}
 
 	public static List<Ticket> getTickets() {

@@ -8,13 +8,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import pozoriste.MainWindow;
+import pozoriste.report.Report;
+import pozoriste.report.ReportTable;
+import pozoriste.ticket.Ticket;
+import pozoriste.ticket.TicketFunctions;
 import pozoriste.user.UserFunctions;
 
 public class ShowsTable extends JPanel {
@@ -55,9 +61,39 @@ public class ShowsTable extends JPanel {
 				}
 			});
 			lp.add(addnew);
+
+			JButton report = new JButton("Izvestaj za sve predstave");
+			report.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			report.setBackground(backgroundColor);
+			report.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Report r = new Report();
+					float totaPrice = 0;
+					for (Show s : ShowFunctions.getShows()) {
+						float totaPriceForShow = 0;
+
+						r.getIds().add(s.getId());
+						for (Ticket t : TicketFunctions.getTickets()) {
+							if (t.getShow().getId() == s.getId()) {
+								totaPrice += t.getPrice();
+								totaPriceForShow += t.getPrice();
+							}
+
+						}
+						r.getPrices().add(totaPriceForShow);
+
+					}
+
+					MainWindow.setView(new ReportTable("Izvestaj za sve predsave", r, totaPrice));
+
+				}
+			});
+			lp.add(report);
+
 		}
 
-		add(lp, BorderLayout.NORTH);
 		JTable table = new JTable();
 		table.setRowHeight(22);
 		table.setRowSelectionAllowed(true);
@@ -100,6 +136,14 @@ public class ShowsTable extends JPanel {
 			}
 		};
 		new ButtonColumn(table, details, 4);
+
+		JPanel searchAndButtons = new JPanel();
+		searchAndButtons.setLayout(new BoxLayout(searchAndButtons, BoxLayout.Y_AXIS));
+
+		searchAndButtons.add(lp);
+		//searchAndButtons.add(new SearchPanel(table));
+
+		add(searchAndButtons, BorderLayout.NORTH);
 
 	}
 
