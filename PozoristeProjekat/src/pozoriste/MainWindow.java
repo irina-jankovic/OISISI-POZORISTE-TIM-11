@@ -8,9 +8,7 @@ import pozoriste.show.ShowsTable;
 import pozoriste.user.LoginPanel;
 
 public class MainWindow extends JFrame {
-	/**
-	 *
-	 */
+
 	private static final long serialVersionUID = -1907333788484152047L;
 	private static MainWindow instance;
 	private static Component old;
