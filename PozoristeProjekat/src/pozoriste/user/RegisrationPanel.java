@@ -86,7 +86,15 @@ public class RegisrationPanel extends JPanel {
 		passwordField2.setBackground(backgroundColor);
 		fields.add(passwordField2);
 
-		fields.add(new JLabel());
+		JButton back= new JButton("Nazad");
+		back.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainWindow.setView(new LoginPanel());
+			}
+		});
+		fields.add(back);
 
 		fields.add(registerBtn);
 		add(fields);
