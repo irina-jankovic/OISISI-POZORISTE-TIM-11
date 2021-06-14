@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 
 import pozoriste.MainWindow;
 import pozoriste.report.Report;
+import pozoriste.report.ReportTable;
 import pozoriste.ticket.Seat;
 import pozoriste.ticket.Ticket;
 import pozoriste.ticket.TicketFunctions;
