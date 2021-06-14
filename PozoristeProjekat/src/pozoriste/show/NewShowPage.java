@@ -82,10 +82,25 @@ public class NewShowPage extends JPanel {
 		timeEditor.getComponent(0).setBackground(backgroundColor);
 		fields.add(dateField);
 
-		fields.add(new JLabel());
+		JButton back = new JButton("Nazad");
+		back.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainWindow.back();
+			}
+		});
+		fields.add(back);
 
 		fields.add(addBtn);
 		add(fields);
+
+		if (s != null) {
+			nameField.setText(s.getName());
+			descriptionField.setText(s.getDescription());
+			dateField.setValue(s.getDate());
+			priceField.setText("" + s.getPrice());
+		}
 
 		addBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -121,12 +136,16 @@ public class NewShowPage extends JPanel {
 					return;
 				}
 
-				Show s = new Show();
-				s.setDate(date);
-				s.setDescription(description);
-				s.setPrice(Float.parseFloat(price));
-				s.setName(title);
-				ShowFunctions.addShow(s);
+				Show mewS = s != null ? s : new Show();
+				mewS.setDate(date);
+				mewS.setDescription(description);
+				mewS.setPrice(Float.parseFloat(price));
+				mewS.setName(title);
+				if (s != null) {
+					ShowFunctions.update(s);
+				} else
+					ShowFunctions.addShow(mewS);
+				MainWindow.setView(new ShowsTable());
 
 			}
 		});
