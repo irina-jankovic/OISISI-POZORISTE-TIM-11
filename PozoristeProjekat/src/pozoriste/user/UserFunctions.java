@@ -18,27 +18,29 @@ public class UserFunctions {
 		return false;
 	}
 
-	public void logout(String username, String password) {
+	public static void logout() {
 		currentUser = null;
+		MainWindow.setView(new LoginPanel());
 	}
 
 	//da ne mogu biti dva ista useraname-a
-	public boolean register(User u) {
+	public static boolean register(User u) {
 		initUsers();
 		for (User user : users)
-			if (user.getUsername().equals(u)) {
+			if (user.getUsername().equals(u.getUsername())) {
 				return false;
 			}
 		users.add(u);
-		// TODO napisati kod za cuvanje
+		// TODO save to file
 		return true;
 	}
 
-	private void initUsers() {
+	private static void initUsers() {
 		if (users == null) {
 			// TODO load from file
 			users = new LinkedList<User>();
 			User u = new User();
+			u.setType("admin");
 			u.setPassword("admin");
 			u.setUsername("admin");
 			users.add(u);
