@@ -14,6 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class LoginPanel extends JPanel {
+	private static final long serialVersionUID = -6246234552834174772L;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 
@@ -54,8 +55,17 @@ public class LoginPanel extends JPanel {
 
 		passwordField.setBackground(backgroundColor);
 		fields.add(passwordField);
-		
-		fields.add(new JLabel());
+
+
+		JButton back= new JButton("Registracija");
+		back.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainWindow.setView(new RegisrationPanel());
+			}
+		});
+		fields.add(back);
 
 		fields.add(loginBtn);
 		add(fields);
@@ -65,7 +75,7 @@ public class LoginPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				                
 		            if(UserFunctions.login(usernameField.getText(), passwordField.getText())) {
-				  //TODO prikazati login stranicu
+						MainWindow.setView(new ShowsTable());
 		            }else {
 	         	         JOptionPane.showMessageDialog(null, "Pogresni podaci");
 				}
