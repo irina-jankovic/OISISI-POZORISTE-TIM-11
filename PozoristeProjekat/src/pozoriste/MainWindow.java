@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import pozoriste.show.ShowsTable;
 import pozoriste.user.LoginPanel;
 
 public class MainWindow extends JFrame {
@@ -22,12 +23,15 @@ public class MainWindow extends JFrame {
 		setLayout(new BorderLayout());
 		add(new LoginPanel());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(new Dimension(500, 500));
+		setLocationRelativeTo(null);
+		setSize(new Dimension(960, 600));
 		setVisible(true);
+		setTitle("Pozoriste");
 	}
 
 	public static void setView(JPanel p) {
-		old = instance.getContentPane().getComponent(0);
+		if (instance.getContentPane().getComponent(0) instanceof ShowsTable)
+			old = instance.getContentPane().getComponent(0);
 		instance.getContentPane().removeAll();
 		instance.getContentPane().add(p);
 		instance.getContentPane().revalidate();
