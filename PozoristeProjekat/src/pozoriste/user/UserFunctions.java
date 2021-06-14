@@ -30,7 +30,7 @@ public class UserFunctions {
 				return false;
 			}
 		users.add(u);
-		// TODO napisati kod za cuvanje
+		// TODO napisati kod za cuvanj
 		return true;
 	}
 
