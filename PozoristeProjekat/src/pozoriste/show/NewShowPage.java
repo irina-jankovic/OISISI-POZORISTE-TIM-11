@@ -28,7 +28,7 @@ public class NewShowPage extends JPanel {
 	 */
 	private static final long serialVersionUID = -2379583815311076207L;
 
-	public NewShowPage() {
+	public NewShowPage(Show s) {
 
 		Color backgroundColor = new Color(240, 240, 240);// for inputs
 		setLayout(new GridBagLayout());
@@ -38,7 +38,7 @@ public class NewShowPage extends JPanel {
 
 		setBackground(new Color(200, 200, 200));
 
-		JButton addBtn = new JButton("Dodaj");
+		JButton addBtn = new JButton(s == null ?"Dodaj" : "Izmeni");
 		addBtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		addBtn.setBackground(backgroundColor);
 

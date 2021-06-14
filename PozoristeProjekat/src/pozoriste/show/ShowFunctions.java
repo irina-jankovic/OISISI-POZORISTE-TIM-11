@@ -1,9 +1,9 @@
 package pozoriste.show;
 
-import pozoriste.Main;
-
 import java.util.LinkedList;
 import java.util.List;
+
+import pozoriste.Main;
 
 public class ShowFunctions {
 	private static List<Show> shows;
