@@ -7,12 +7,19 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import pozoriste.MainWindow;
 
 public class RegisrationPanel extends JPanel {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -2379583815311076207L;
 
@@ -82,14 +89,22 @@ public class RegisrationPanel extends JPanel {
 		passwordField2.setBackground(backgroundColor);
 		fields.add(passwordField2);
 
-		fields.add(new JLabel());
+		JButton back= new JButton("Nazad");
+		back.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainWindow.setView(new LoginPanel());
+			}
+		});
+		fields.add(back);
 
 		fields.add(registerBtn);
 		add(fields);
 
 		registerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-                         
+
 				String username = usernameField.getText();
 				if (username.trim().equals("")) {
 					JOptionPane.showMessageDialog(null, "Korisnicko ime nije uneto");
@@ -129,11 +144,12 @@ public class RegisrationPanel extends JPanel {
 				u.setPassword(password1);
 				u.setUsername(username);
 				if(UserFunctions.register(u)) {
-					//TODO prosledjuje na login
+					MainWindow.setView(new LoginPanel());
 				}else {
 					JOptionPane.showMessageDialog(null, "Korisnicko ime je zauzeto");
 
 				}
+
 			}
 		});
 	}

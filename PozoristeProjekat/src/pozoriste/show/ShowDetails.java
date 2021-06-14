@@ -126,7 +126,7 @@ public class ShowDetails extends JPanel {
 							r.getPrices().add(t.getPrice());
 						}
 					}
-					
+					MainWindow.setView(new ReportTable(s.getName() + " (" + s.getId() + ")", r, totalPrice));
 
 				} else {
 					List<Seat> selectedSeats = new LinkedList<Seat>();
