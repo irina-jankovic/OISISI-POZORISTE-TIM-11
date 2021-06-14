@@ -18,8 +18,9 @@ public class UserFunctions {
 		return false;
 	}
 
-	public static void logout(String username, String password) {
+	public static void logout() {
 		currentUser = null;
+		MainWindow.setView(new LoginPanel());
 	}
 
 	//da ne mogu biti dva ista useraname-a
@@ -30,18 +31,21 @@ public class UserFunctions {
 				return false;
 			}
 		users.add(u);
-		// TODO napisati kod za cuvanj
+		Main.saveToFile(users, "users.data");
 		return true;
 	}
 
 	private static void initUsers() {
 		if (users == null) {
-			// TODO load from file
-			users = new LinkedList<User>();
-			User u = new User();
-			u.setPassword("admin");
-			u.setUsername("admin");
-			users.add(u);
+			users = (List<User>) Main.openFromFile("users.data");
+			if (users == null) {
+				users = new LinkedList<User>();
+				User u = new User();
+				u.setType("admin");
+				u.setPassword("admin");
+				u.setUsername("admin");
+				users.add(u);
+			}
 		}
 	}
 
