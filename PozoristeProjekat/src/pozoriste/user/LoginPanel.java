@@ -1,5 +1,8 @@
 package pozoriste.user;
 
+import pozoriste.MainWindow;
+import pozoriste.show.ShowsTable;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;

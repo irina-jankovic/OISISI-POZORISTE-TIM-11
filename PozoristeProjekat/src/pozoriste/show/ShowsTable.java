@@ -141,7 +141,7 @@ public class ShowsTable extends JPanel {
 		searchAndButtons.setLayout(new BoxLayout(searchAndButtons, BoxLayout.Y_AXIS));
 
 		searchAndButtons.add(lp);
-		//searchAndButtons.add(new SearchPanel(table));
+		searchAndButtons.add(new SearchPanel(table));
 
 		add(searchAndButtons, BorderLayout.NORTH);
 
