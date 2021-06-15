@@ -1,5 +1,8 @@
 package pozoriste.user;
 
+import pozoriste.Main;
+import pozoriste.MainWindow;
+
 import java.util.LinkedList;
 import java.util.List;
 
