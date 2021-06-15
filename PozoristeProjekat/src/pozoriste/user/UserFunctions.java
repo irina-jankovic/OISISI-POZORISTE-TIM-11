@@ -27,7 +27,7 @@ public class UserFunctions {
 	public static boolean register(User u) {
 		initUsers();
 		for (User user : users)
-			if (user.getUsername().equals(u)) {
+			if (user.getUsername().equals(u.getUsername())) {
 				return false;
 			}
 		users.add(u);
