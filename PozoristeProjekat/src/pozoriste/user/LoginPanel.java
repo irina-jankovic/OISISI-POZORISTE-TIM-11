@@ -56,7 +56,7 @@ public class LoginPanel extends JPanel {
 		passwordField.setBackground(backgroundColor);
 		fields.add(passwordField);
 		
-		fields.add(new JLabel());
+		
 
 		JButton back= new JButton("Registracija");
 		back.addActionListener(new ActionListener() {
